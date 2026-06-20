@@ -6,20 +6,18 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('oil_change_checks', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('current_odometer');
+            $table->date('previous_oil_change_date');
+            $table->unsignedInteger('previous_oil_change_odometer');
+            $table->boolean('is_due');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('oil_change_checks');
